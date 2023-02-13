@@ -1,8 +1,8 @@
 package com.tarciodiniz.spring.controller
 
-import com.tarciodiniz.spring.dto.ProductDto
 import com.tarciodiniz.spring.model.User
 import com.tarciodiniz.spring.service.UserService
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -14,7 +14,7 @@ class ControllerUser(private val service: UserService){
     }
 
     @PostMapping
-    fun registerUser(@RequestBody user: User) {
+    fun registerUser(@RequestBody @Valid user: User) {
         service.registerUser(user)
     }
 

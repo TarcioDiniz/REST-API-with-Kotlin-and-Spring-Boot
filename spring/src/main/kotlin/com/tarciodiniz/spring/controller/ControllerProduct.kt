@@ -3,6 +3,7 @@ package com.tarciodiniz.spring.controller
 import com.tarciodiniz.spring.dto.ProductDto
 import com.tarciodiniz.spring.model.Product
 import com.tarciodiniz.spring.service.ProductService
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -21,7 +22,7 @@ class ControllerProduct(private val service: ProductService) {
     }
 
     @PostMapping
-    fun registerProduct(@RequestBody dto: ProductDto) {
+    fun registerProduct(@RequestBody @Valid dto: ProductDto) {
         service.registerProduct(dto)
     }
 }

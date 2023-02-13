@@ -1,16 +1,14 @@
 package com.tarciodiniz.spring.controller
 
+import com.tarciodiniz.spring.dto.ProductDto
 import com.tarciodiniz.spring.model.Product
 import com.tarciodiniz.spring.service.ProductService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
 @RequestMapping("/Product")
-class ControllerProduct (private val service: ProductService){
+class ControllerProduct(private val service: ProductService) {
 
     @GetMapping
     fun getProducts(): List<Product> {
@@ -18,9 +16,12 @@ class ControllerProduct (private val service: ProductService){
     }
 
     @GetMapping("/{userID}")
-    fun getByUserId(@PathVariable userID: String): Product{
+    fun getByUserId(@PathVariable userID: String): Product {
         return service.getByUserId(userID)
     }
 
-
+    @PostMapping
+    fun registerProduct(@RequestBody dto: ProductDto) {
+        service.registerProduct(dto)
+    }
 }

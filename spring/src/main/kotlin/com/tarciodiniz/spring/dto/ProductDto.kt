@@ -1,12 +1,11 @@
-package com.tarciodiniz.spring.model
+package com.tarciodiniz.spring.dto
 
 import java.math.BigDecimal
 
-data class Product(
-    val id: Long,
+data class ProductDto (
     val name: String,
     val description: String,
-    val value: BigDecimal,
+    val value: String,
     val image: String? = null,
     val userID: String? = null
 )

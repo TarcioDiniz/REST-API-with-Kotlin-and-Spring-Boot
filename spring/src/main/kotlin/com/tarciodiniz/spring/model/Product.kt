@@ -8,5 +8,5 @@ data class Product(
     val description: String,
     val value: BigDecimal,
     val image: String? = null,
-    val userID: User
+    val userID: String? = null
 )

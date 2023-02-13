@@ -1,7 +1,5 @@
 package com.tarciodiniz.spring.dto
 
-import java.math.BigDecimal
-
 data class ProductDto (
     val name: String,
     val description: String,

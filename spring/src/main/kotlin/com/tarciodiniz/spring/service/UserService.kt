@@ -4,9 +4,19 @@ import com.tarciodiniz.spring.model.User
 import org.springframework.stereotype.Service
 
 @Service
-class UserService {
+class UserService(private var users: List<User>) {
+
     fun getListUser(): List<User> {
-        val user = User("tarcio", "tarcio diniz", "1234")
-        return listOf(user, user)
+        return users
+    }
+
+    fun registerUser(user: User) {
+        users = users.plus(
+            User(
+                id = user.id,
+                name = user.name,
+                password = user.password
+            )
+        )
     }
 }

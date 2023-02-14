@@ -2,7 +2,6 @@ package com.tarciodiniz.spring.service
 
 import com.tarciodiniz.spring.model.User
 import org.springframework.stereotype.Service
-import java.lang.IllegalArgumentException
 
 @Service
 class UserService(private var users: List<User>) {
@@ -12,10 +11,9 @@ class UserService(private var users: List<User>) {
     }
 
     fun registerUser(user: User) {
-        if (users.any{it.id == user.id}){
+        if (users.any { it.id == user.id }) {
             throw IllegalArgumentException("User id must be unique.")
-        }
-        else {
+        } else {
             users = users.plus(
                 User(
                     id = user.id,

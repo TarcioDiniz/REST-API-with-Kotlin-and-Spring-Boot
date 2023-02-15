@@ -58,9 +58,9 @@ class ProductService(
         )
     }
 
-    fun delete(id: Long) {
+    fun delete(product: Product) {
         val productUp = products.stream().filter { p ->
-            p.id == id
+            p.id == product.id
         }.findFirst().orElseThrow {
             NotFoundException(notFoundMessage)
         }

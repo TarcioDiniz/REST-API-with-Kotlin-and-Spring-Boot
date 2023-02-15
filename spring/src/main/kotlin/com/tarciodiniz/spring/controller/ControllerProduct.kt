@@ -38,9 +38,9 @@ class ControllerProduct(private val service: ProductService) {
         service.toUpdate(product)
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable id: Long){
-        service.delete(id)
+    fun delete(@PathVariable product: Product){
+        service.delete(product)
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/Users")
 class ControllerUser(private val service: UserService){
     @GetMapping
-    fun getProducts(): List<User> {
+    fun getUsers(): List<User> {
         return service.getListUser()
     }
 

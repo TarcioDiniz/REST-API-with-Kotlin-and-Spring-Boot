@@ -7,6 +7,7 @@ import com.tarciodiniz.spring.service.ProductService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
 import java.util.*
@@ -26,6 +27,7 @@ class ControllerProduct(private val service: ProductService) {
     }
 
     @PostMapping
+    @Transactional
     fun registerProduct(@RequestBody @Valid product: ProductDto,
                         uriBuilder: UriComponentsBuilder): ResponseEntity<ProductDto>{
         val register = service.registerProduct(product)
@@ -34,13 +36,15 @@ class ControllerProduct(private val service: ProductService) {
     }
 
     @PutMapping
+    @Transactional
     fun toUpdate(@RequestBody @Valid product: UpdateProductDto){
         service.toUpdate(product)
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
+    @Transactional
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable product: Product){
-        service.delete(product)
+    fun delete(@PathVariable id: Long){
+        service.delete(id)
     }
 }

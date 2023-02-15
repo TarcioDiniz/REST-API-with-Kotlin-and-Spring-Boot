@@ -1,14 +1,18 @@
 package com.tarciodiniz.spring.model
 
-import jakarta.persistence.Entity
+import jakarta.persistence.*
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.Size
 
 @Entity
+@Table(name = "users")
 data class User(
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = 0L,
     @field:NotEmpty
-    val id: String,
+    val username: String,
     val name: String,
     @field:NotEmpty @field:Size(min = 3, max = 10)
     val password: String
 )
+

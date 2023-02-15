@@ -1,22 +1,23 @@
 package com.tarciodiniz.spring.service
 
 import com.tarciodiniz.spring.model.User
+import com.tarciodiniz.spring.repository.RepositoryUser
 import org.springframework.stereotype.Service
 
 @Service
-class UserService(private var users: List<User>) {
+class UserService(private var repository: RepositoryUser) {
 
     fun getListUser(): List<User> {
-        return users
+        return repository.findAll()
     }
 
     fun registerUser(user: User) {
-        if (users.any { it.id == user.id }) {
+        if (repository.findAll().any { it.username == user.username }) {
             throw IllegalArgumentException("User id must be unique.")
         } else {
-            users = users.plus(
+            repository.save(
                 User(
-                    id = user.id,
+                    username = user.username,
                     name = user.name,
                     password = user.password
                 )

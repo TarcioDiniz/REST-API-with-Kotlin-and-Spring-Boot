@@ -31,7 +31,7 @@ class ProductService(
             Product(
                 name = dto.name,
                 description = dto.description,
-                value = BigDecimal(dto.value),
+                valueProduct = BigDecimal(dto.valueProduct),
                 image = dto.image,
                 userID = dto.userID
             )
@@ -47,7 +47,7 @@ class ProductService(
                 id = product.id,
                 name = product.name,
                 description = product.description,
-                value = BigDecimal(product.value),
+                valueProduct = BigDecimal(product.value),
                 image = product.image,
                 userID = productUser.userID
             )

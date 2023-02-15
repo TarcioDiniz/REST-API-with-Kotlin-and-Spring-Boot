@@ -9,8 +9,7 @@ data class Product(
     val id: Long? = 0L,
     val name: String,
     val description: String,
-    @Column(name = "\"value\"")
-    val value: BigDecimal,
+    val valueProduct: BigDecimal,
     val image: String? = null,
     val userID: String? = null
 )

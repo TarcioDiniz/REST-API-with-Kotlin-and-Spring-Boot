@@ -5,6 +5,8 @@ import com.tarciodiniz.spring.dto.UpdateProductDto
 import com.tarciodiniz.spring.model.Product
 import com.tarciodiniz.spring.service.ProductService
 import jakarta.validation.Valid
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
@@ -17,8 +19,8 @@ import java.util.*
 class ControllerProduct(private val service: ProductService) {
 
     @GetMapping
-    fun getProducts(): List<Product> {
-        return service.getListProduct()
+    fun getProducts(pageable: Pageable): Page<Product> {
+        return service.getListProduct(pageable)
     }
 
     @GetMapping("/{userID}")

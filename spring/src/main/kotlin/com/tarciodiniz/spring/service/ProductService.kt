@@ -5,6 +5,8 @@ import com.tarciodiniz.spring.dto.UpdateProductDto
 import com.tarciodiniz.spring.exception.NotFoundException
 import com.tarciodiniz.spring.model.Product
 import com.tarciodiniz.spring.repository.RepositoryProduct
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
@@ -14,8 +16,17 @@ class ProductService(
     private val notFoundMessage: String = "Product not found"
 ) {
 
-    fun getListProduct(): List<Product> {
-        return repository.findAll()
+//    * USING PAGINATION *
+//       just use in url:
+//
+//            1 - to specify the size:
+//                 http://__/Product?size=2
+//
+//            2 - to specify size and page
+//                http://__/Product?size=2&page=2
+
+    fun getListProduct(pageable: Pageable): Page<Product> {
+        return repository.findAll(pageable)
     }
 
     fun getByUserId(userID: String): Product {

@@ -24,6 +24,15 @@ class ProductService(
 //
 //            2 - to specify size and page
 //                http://__/Product?size=2&page=2
+//
+//      * Pageable spring sorting by url *
+//          just use in url:
+
+//            1 - http://__/Product?size=2&sort=valueProduct,desc
+//
+//    Learn more about pagination and sorting features by referring to
+//    the official Spring Boot documentation.
+//    https://docs.spring.io/spring-data/rest/docs/current/reference/html/#paging-and-sorting
 
     fun getListProduct(pageable: Pageable): Page<Product> {
         return repository.findAll(pageable)

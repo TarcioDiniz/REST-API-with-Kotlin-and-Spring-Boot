@@ -50,7 +50,7 @@ class ProductService(
     fun registerProduct(dto: ProductDto){
         repository.save(
             Product(
-                id = UUID.randomUUID(),
+                id = UUID.randomUUID().toString(),
                 name = dto.name,
                 description = dto.description,
                 valueProduct = BigDecimal(dto.valueProduct),
@@ -76,7 +76,7 @@ class ProductService(
         )
     }
 
-    fun delete(id: UUID) {
+    fun delete(id: String) {
         val product = repository.findById(id).stream().filter { p ->
             p.id == id
         }.findFirst().orElseThrow {

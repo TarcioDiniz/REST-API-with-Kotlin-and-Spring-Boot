@@ -4,7 +4,7 @@ import com.tarciodiniz.spring.model.Product
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.UUID
 
-interface RepositoryProduct: JpaRepository<Product, UUID> {
+interface RepositoryProduct: JpaRepository<Product, String> {
 
     fun findByNameContaining(name: String): List<Product>
 

@@ -2,11 +2,10 @@ package com.tarciodiniz.spring.dto
 
 import jakarta.validation.constraints.NotEmpty
 import org.jetbrains.annotations.NotNull
-import java.util.UUID
 
 data class UpdateProductDto(
     @field:NotNull
-    val id: UUID,
+    val id: String,
     @field:NotEmpty
     val name: String,
     val description: String,

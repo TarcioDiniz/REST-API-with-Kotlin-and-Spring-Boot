@@ -52,7 +52,7 @@ class ControllerProduct(private val service: ProductService) {
     @Transactional
     @CacheEvict(value = ["product"], allEntries = true)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable id: Long){
+    fun delete(@PathVariable id: UUID){
         service.delete(id)
     }
 }

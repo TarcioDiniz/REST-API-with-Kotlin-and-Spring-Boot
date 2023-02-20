@@ -155,5 +155,6 @@
     <orderEntry type="library" name="Maven: com.electronwill.night-config:core:3.6.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-cache:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:6.0.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.uuid:java-uuid-generator:4.0.0" level="project" />
   </component>
 </module>

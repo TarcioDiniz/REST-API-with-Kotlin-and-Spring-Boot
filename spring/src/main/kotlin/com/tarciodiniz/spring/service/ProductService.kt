@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
+import java.util.*
 
 @Service
 class ProductService(
@@ -49,6 +50,7 @@ class ProductService(
     fun registerProduct(dto: ProductDto){
         repository.save(
             Product(
+                id = UUID.randomUUID(),
                 name = dto.name,
                 description = dto.description,
                 valueProduct = BigDecimal(dto.valueProduct),
@@ -74,7 +76,7 @@ class ProductService(
         )
     }
 
-    fun delete(id: Long) {
+    fun delete(id: UUID) {
         val product = repository.findById(id).stream().filter { p ->
             p.id == id
         }.findFirst().orElseThrow {

@@ -34,25 +34,33 @@ class ControllerProduct(private val service: ProductService) {
     @PostMapping
     @Transactional
     @CacheEvict(value = ["product"], allEntries = true)
-    fun registerProduct(@RequestBody @Valid product: ProductDto,
-                        uriBuilder: UriComponentsBuilder): ResponseEntity<ProductDto>{
+    fun registerProduct(
+        @RequestBody @Valid product: ProductDto,
+        uriBuilder: UriComponentsBuilder
+    ): ResponseEntity<ProductDto> {
         val register = service.registerProduct(product)
         val uri = uriBuilder.path("/Product/${register}").build().toUri()
         return ResponseEntity.created(uri).body(product)
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
     @CacheEvict(value = ["product"], allEntries = true)
-    fun toUpdate(@RequestBody @Valid product: UpdateProductDto){
-        service.toUpdate(product)
+    fun toUpdate(
+        @RequestBody
+        @Valid
+        product: UpdateProductDto,
+        @PathVariable
+        id: String
+    ) {
+        service.toUpdate(product, id)
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     @CacheEvict(value = ["product"], allEntries = true)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable id: String){
+    fun delete(@PathVariable id: String) {
         service.delete(id)
     }
 }

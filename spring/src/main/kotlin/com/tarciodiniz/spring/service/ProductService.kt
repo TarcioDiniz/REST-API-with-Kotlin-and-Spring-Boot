@@ -3,6 +3,7 @@ package com.tarciodiniz.spring.service
 import com.tarciodiniz.spring.dto.ProductDto
 import com.tarciodiniz.spring.dto.UpdateProductDto
 import com.tarciodiniz.spring.exception.NotFoundException
+import com.tarciodiniz.spring.extension.isUUID
 import com.tarciodiniz.spring.model.Product
 import com.tarciodiniz.spring.repository.RepositoryProduct
 import org.springframework.data.domain.Page
@@ -47,7 +48,7 @@ class ProductService(
         }
     }
 
-    fun registerProduct(dto: ProductDto){
+    fun registerProduct(dto: ProductDto) {
         repository.save(
             Product(
                 id = UUID.randomUUID().toString(),
@@ -60,21 +61,29 @@ class ProductService(
         )
     }
 
-    fun toUpdate(product: UpdateProductDto) {
-        val productUser = repository.findById(product.id).orElseThrow {
-            NotFoundException(notFoundMessage)
+    fun toUpdate(product: UpdateProductDto, id: String) {
+        if (!isUUID(id)) {
+            return
         }
-        repository.delete(
-            Product(
-                id = product.id,
+
+        val existingProduct = repository.findById(id).orElse(null)
+            ?: Product(id = id,
                 name = product.name,
                 description = product.description,
-                valueProduct = BigDecimal(product.value),
+                valueProduct = BigDecimal(product.valueProduct),
                 image = product.image,
-                userID = productUser.userID
-            )
-        )
+                userID = product.userID)
+
+        existingProduct.apply {
+            name = product.name
+            description = product.description
+            valueProduct = BigDecimal(product.valueProduct)
+            image = product.image
+        }
+
+        repository.save(existingProduct)
     }
+
 
     fun delete(id: String) {
         val product = repository.findById(id).stream().filter { p ->

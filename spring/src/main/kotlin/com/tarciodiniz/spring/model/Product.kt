@@ -8,9 +8,9 @@ import java.util.*
 data class Product(
     @Id
     val id: String = UUID.randomUUID().toString(),
-    val name: String,
-    val description: String,
-    val valueProduct: BigDecimal,
-    val image: String? = null,
+    var name: String,
+    var description: String,
+    var valueProduct: BigDecimal,
+    var image: String? = null,
     val userID: String? = null
 )

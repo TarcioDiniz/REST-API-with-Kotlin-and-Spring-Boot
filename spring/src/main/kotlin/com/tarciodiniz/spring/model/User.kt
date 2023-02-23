@@ -12,7 +12,7 @@ data class User(
     @field:NotEmpty
     val username: String,
     val name: String,
-    @field:NotEmpty @field:Size(min = 3, max = 10)
+    @field:NotEmpty
     val password: String
 )
 
